@@ -86,6 +86,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
+        if (indeks == antall()/2){
+            return this;
 
         if (indeks < antall()/2){
            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
@@ -93,8 +95,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (indeks > antall()/2){
             //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
         }
-        if (indeks == antall()/2){
-            return this;
         }
         return null;
     }
