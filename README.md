@@ -1,9 +1,12 @@
 # Obligatorisk oppgave 2 i Algoritmer og Datastrukturer
 
-Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
+Denne oppgaven er en innlevering i Algoritmer og Datastrukturer.
 Oppgaven er levert av følgende studenter:
-* Navn Navnesen, S123456, s123456@oslomet.no
-* ...
+* Erik Christopher Kierulf Næsguthe, s356251, s356251@oslomet.no
+* Christian Ø Sandstad, s364752, s364752@oslomet.no
+* Mathias Ø Schjetne, s364744, s364744@oslomet.no
+* Sivert Aasdalen, s362113, s362113@oslomet.no
+* Even Andreas Ingeberg, s362107, s362107@oslomet.no
 
 # Arbeidsfordeling
 
