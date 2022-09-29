@@ -11,10 +11,9 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Per har hatt hovedansvar for oppgave 1, 3, og 5. 
-* Else har hatt hovedansvar for oppgave 2, 4, og 6. 
-* Fatima har hatt hovedansvar for oppgave 7 og 8. 
-* Vi har i fellesskap løst oppgave 10. 
+* Sivert har hatt hovedansvar for oppgave 1 & 6. 
+* Christian har hatt hovedansvar for oppgave 3 & 5. 
+
 
 # Oppgavebeskrivelse
 
