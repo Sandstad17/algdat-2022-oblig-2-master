@@ -12,7 +12,9 @@ Oppgaven er levert av følgende studenter:
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Sivert har hatt hovedansvar for oppgave 1 & 6. 
-* Christian har hatt hovedansvar for oppgave 3 & 5. 
+* Christian har hatt hovedansvar for oppgave 3 & 5.
+* Mathias har hatt hovedansvar for oppgave 2 & 4. 
+* 
 
 
 # Oppgavebeskrivelse
