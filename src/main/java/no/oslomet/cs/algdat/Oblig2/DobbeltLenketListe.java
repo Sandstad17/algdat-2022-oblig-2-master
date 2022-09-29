@@ -44,9 +44,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         throw new UnsupportedOperationException();
     }
 
+    //OPPGAVE 3.B
     public Liste<T> subliste(int fra, int til) {
+
         throw new UnsupportedOperationException();
     }
+    //
 
     @Override
     public int antall() {
@@ -72,10 +75,28 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean inneholder(T verdi) {
         throw new UnsupportedOperationException();
     }
-
+//---------------------------------------------------------------------------//
+    //OPPGAVE 3
     @Override
     public T hent(int indeks) {
+
+        //Oppgave 3
         throw new UnsupportedOperationException();
+
+    }
+
+    private Node<T> finnNode(int indeks) {
+
+        if (indeks < antall()/2){
+           //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+        }
+        if (indeks > antall()/2){
+            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+        }
+        if (indeks == antall()/2){
+            return this;
+        }
+        return null;
     }
 
     @Override
