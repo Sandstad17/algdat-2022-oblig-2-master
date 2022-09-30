@@ -68,6 +68,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public void leggInn(int indeks, T verdi) {
+        //indeks må være gyldig ( fra 0 til n-tall )
+        //verdien skal legges inn på indeksen som er satt
+        //
+
+
         throw new UnsupportedOperationException();
     }
 
@@ -75,29 +80,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     public boolean inneholder(T verdi) {
         throw new UnsupportedOperationException();
     }
-//---------------------------------------------------------------------------//
+
     //OPPGAVE 3
     @Override
     public T hent(int indeks) {
 
-        //Oppgave 3
         throw new UnsupportedOperationException();
-
     }
 
     private Node<T> finnNode(int indeks) {
-        if (indeks == antall()/2){
-            return this;
 
-        if (indeks < antall()/2){
-           //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+        //midlertidig rekursiv løsning, bruk heller iterativ løsning (se ipad notater)
+        if (indeks == 0) {
+            return null; //return null er skrevet for å ikke få feilmeldin return this er korrekt
         }
-        if (indeks > antall()/2){
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+        else{
+            return this.finnNode(indeks - 1);
+            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
         }
-        }
-        return null;
     }
+            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+
 
     @Override
     public int indeksTil(T verdi) {
