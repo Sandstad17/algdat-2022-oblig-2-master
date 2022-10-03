@@ -65,7 +65,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean tom() {
-
+        if(antall() > 0){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 
     @Override
