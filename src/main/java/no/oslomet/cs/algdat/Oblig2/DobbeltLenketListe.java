@@ -6,6 +6,7 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class DobbeltLenketListe<T> implements Liste<T> {
@@ -49,11 +50,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p; //Previous
         Node<T> q; //Qurrent
 
-
-
-
-
-
         for (int i = 0; i < a.length; i++) {
             if (a[i] != null) {
                 q = new Node<T>(a[i]);
@@ -71,7 +67,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
     }
-
 
     //OPPGAVE 3.B
     public Liste<T> subliste(int fra, int til) {
@@ -118,14 +113,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
-        //midlertidig rekursiv løsning, bruk heller iterativ løsning (se ipad notater)
-        if (indeks == 0) {
-            return null; //return null er skrevet for å ikke få feilmeldin return this er korrekt
-        }
-        else{
-            return this.finnNode(indeks - 1);
+        //iterativ løsnin
+        Node<T> p;
+
+        int midten = antall/2;
+
+        if (indeks < midten) {
+            p = hode;
+            for(int i = 0; i < indeks; i++){
+               p = p.neste;
+            }
+            return p;
             //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
         }
+        if(indeks > midten) {
+            p = hale;
+            for(int i = antall; i > indeks; i--){
+                p = p.forrige;
+            }
+            return p;
+            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+        }
+
+        return null; //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
     }
             //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
 
@@ -157,6 +167,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
+
+
         throw new UnsupportedOperationException();
     }
 
