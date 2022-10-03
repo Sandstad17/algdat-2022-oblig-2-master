@@ -42,7 +42,24 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a) {
-        throw new UnsupportedOperationException();
+        int i = 0;
+        for (int i = 0; i < a.length && a[i] == null; i++){
+        if (i < a.length){
+
+            Node<T> p = hode = new Node<>(a[i], null);  // den første noden
+            antall = 1;                                 // vi har minst en node
+
+            for (i++; i < a.length; i++)
+            {
+                if (a[i] != null)
+                {
+                    p = p.neste = new Node<>(a[i], null);   // en ny node
+                    antall++;
+                }
+            }
+            hale = p;
+        }
+    }
     }
 
     //OPPGAVE 3.B
@@ -54,23 +71,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int antall() {
-        Node temp = hode;
-        int teller = 0;
-        while(temp != null){
-            teller++;
-            temp = temp.neste;
-        }
-        return teller;
+        return antall;
     }
 
     @Override
     public boolean tom() {
-        if(antall() > 0){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return antall == 0;
     }
 
     @Override
@@ -101,7 +107,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks) {
-
         //midlertidig rekursiv løsning, bruk heller iterativ løsning (se ipad notater)
         if (indeks == 0) {
             return null; //return null er skrevet for å ikke få feilmeldin return this er korrekt
