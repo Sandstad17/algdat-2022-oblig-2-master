@@ -114,7 +114,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     private Node<T> finnNode(int indeks) {
         //iterativ løsnin
-        Node<T> p;
+        Node<T> p = null;
 
         int midten = antall/2;
 
@@ -135,7 +135,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
         }
 
-        return null; //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+        return p; //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
     }
             //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
 
