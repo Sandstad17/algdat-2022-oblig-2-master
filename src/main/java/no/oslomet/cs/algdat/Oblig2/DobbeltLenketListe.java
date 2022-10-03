@@ -42,25 +42,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     public DobbeltLenketListe(T[] a) {
-        int i = 0;
-        for (int i = 0; i < a.length && a[i] == null; i++){
-        if (i < a.length){
 
-            Node<T> p = hode = new Node<>(a[i], null);  // den første noden
-            antall = 1;                                 // vi har minst en node
+        if (a == null) {
+            throw new NullPointerException("Tabellen a er null!");
+        }
 
-            for (i++; i < a.length; i++)
-            {
-                if (a[i] != null)
-                {
-                    p = p.neste = new Node<>(a[i], null);   // en ny node
-                    antall++;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != null) {
+                if (hode == null) {
+                    hode = new Node<T>(a[i]);
+                }
+                else{
+
                 }
             }
-            hale = p;
         }
     }
-    }
+
 
     //OPPGAVE 3.B
     public Liste<T> subliste(int fra, int til) {
