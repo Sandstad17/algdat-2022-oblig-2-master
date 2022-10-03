@@ -46,14 +46,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (a == null) {
             throw new NullPointerException("Tabellen a er null!");
         }
+        Node<T> p;
+        Node<T> q;
+        Node<T> r;
+
 
         for(int i = 0; i < a.length; i++) {
             if (a[i] != null) {
-                if (hode == null) {
-                    Node<T> now = hode = new Node<T>(a[i]);
+                if (hode == null){
+                    p = q = r = hode = new Node<T>(a[i]);
+                    hale = new Node<T>(a[i]);
                 }
                 else{
-
 
                 }
             }
