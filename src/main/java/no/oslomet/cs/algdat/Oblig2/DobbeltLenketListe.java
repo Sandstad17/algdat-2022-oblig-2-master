@@ -106,7 +106,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean leggInn(T verdi) {
-        throw new UnsupportedOperationException();
+        leggInn(0, verdi);
+        return true;
     }
 
     @Override
@@ -115,8 +116,42 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //verdien skal legges inn på indeksen som er satt
         //
 
+        if(verdi != null && indeks <= antall) {
+            Node<T> q = hode.neste;
 
-        throw new UnsupportedOperationException();
+            Node<T> ny = new Node<T>(verdi);
+
+            if (tom()) {
+                hode.neste = ny;
+                hale.forrige = ny;
+            }
+            else{
+                for (int i = 0; i < indeks; i++) {
+                    q = q.neste;
+                }
+            }
+            if (indeks == 0) {
+                hode.neste = ny;
+                ny.neste = q;
+                q.forrige = ny;
+            }
+            else if (indeks == antall) {
+                hale.forrige = ny;
+                ny.forrige = q;
+                q.neste = ny;
+            }
+            else {
+                Node<T> etter = q.neste;
+
+                ny.neste = etter;
+                etter.forrige = ny;
+                q.neste = ny;
+                ny.forrige = q;
+            }
+
+            antall ++;
+            endringer++;
+        }
     }
 
     @Override
@@ -127,7 +162,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //OPPGAVE 3
     @Override
     public T hent(int indeks) {
-            
 
         throw new UnsupportedOperationException();
     }
@@ -177,7 +211,23 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
-        throw new UnsupportedOperationException();
+        Node<T> q = hode.neste;
+
+        for (int i = 0; i < indeks; i++) {
+            q = q.neste;
+        }
+
+        if (indeks == 0) {
+            q.forrige = null;
+            hode.neste = hode.neste.neste;
+        }
+        else if (indeks == antall - 1) {
+
+        }
+
+
+
+
     }
 
     @Override
