@@ -211,6 +211,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public T oppdater(int indeks, T nyverdi) {
 
+        //Sjekk om det er lovlig innput
+        indeksKontroll(indeks, false);
+
         //Lager en variabel av typen Node
         Node<T> node = finnNode(indeks);
 
@@ -219,6 +222,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         //Oppdaterer indeks til nyverdi
         node.verdi = nyverdi;
+
+        //Endringer må oppdateres også
+        endringer++;
 
         return gammelVerdi;
     }
