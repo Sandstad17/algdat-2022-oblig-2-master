@@ -213,6 +213,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
+
         Node<T> q = hode.neste;
 
         for (int i = 0; i < indeks; i++) {
@@ -256,7 +257,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         while (q.neste != null) {
             s.append(q.verdi.toString());
             s.append(", ");
+            q = q.neste;
         }
+        s.append(q.verdi);
         s.append("]");
 
         return s.toString();
@@ -274,7 +277,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         while (q.forrige != null) {
             s.append(q.verdi.toString());
             s.append(", ");
+            q = q.forrige;
         }
+        s.append(q.verdi);
         s.append("]");
 
         return s.toString();
