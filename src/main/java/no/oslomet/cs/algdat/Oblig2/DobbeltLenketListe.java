@@ -112,6 +112,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return true;
     }
 
+    //Funker ikke, kom tilbake i oppgave 5
     @Override
     public void leggInn(int indeks, T verdi) {
         //indeks må være gyldig ( fra 0 til n-tall )
