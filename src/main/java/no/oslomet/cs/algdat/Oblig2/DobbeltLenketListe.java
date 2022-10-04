@@ -164,36 +164,35 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //OPPGAVE 3
     @Override
     public T hent(int indeks) {
-
         throw new UnsupportedOperationException();
     }
 
     private Node<T> finnNode(int indeks){
+
         //iterativ løsnin
         Node<T> p = null;
-
         int midten = antall/2;
 
+        //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
         if (indeks < midten) {
             p = hode;
             for(int i = 0; i < indeks; i++){
                p = p.neste;
             }
             return p;
-            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
         }
+
+        //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
         if(indeks > midten) {
             p = hale;
             for(int i = antall; i > indeks; i--){
                 p = p.forrige;
             }
             return p;
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
         }
-
-        return p; //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+        return p;
     }
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+
 
 
     @Override
