@@ -220,15 +220,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         }
 
         if (indeks == 0) {
+            q = hode.neste.neste;
+
             q.forrige = null;
-            hode.neste = hode.neste.neste;
+            hode.neste = q;
         }
         else if (indeks == antall - 1) {
-
+            hale.forrige = q.forrige;
+            hale.forrige.neste = null;
+        }
+        else {
+            q.forrige.neste = q.neste;
+            q.neste.forrige = q.forrige;
         }
 
-
-
+        return q.verdi;
 
     }
 
