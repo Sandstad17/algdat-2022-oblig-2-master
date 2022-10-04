@@ -124,6 +124,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             if (tom()) {
                 hode.neste = ny;
                 hale.forrige = ny;
+                antall ++;
+                endringer ++;
             }
             else{
                 for (int i = 0; i < indeks; i++) {
