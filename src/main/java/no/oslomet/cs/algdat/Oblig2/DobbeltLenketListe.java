@@ -50,20 +50,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p; //Previous
         Node<T> q; //Qurrent
 
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] != null) {
-                q = new Node<T>(a[i]);
-                if (hode == null) {
-                    hode = q;
-                    hale = q;
+        antall = 0;
 
-                } else {
-                    p = new Node<T>(a[i-1]);
-                    q.forrige = p;
-                    p.neste = q;
-                    hale = q;
-                }
+        if (a.length != 0) {
+            int i = 0;
+            while (i < a.length && a[i] == null) {
+                i++;
+            }
+            if (i < a.length) {
+
+                hode = new Node<T>(null);
+                hode.neste = q = new Node<T>(a[i]);
                 antall++;
+                i++;
+                p = q;
+
+                while (i < a.length) {
+                    if (a[i] != null) {
+                        p.neste = q = new Node<T>(a[i]);
+                        antall++;
+                        p = q;
+                    }
+                    i++;
+                }
+
+                hale = new Node<T>(null);
+                hale.forrige = p;
+
+                p = hode.neste;
+                while (q.neste != null) {
+                    q = p.neste;
+                    q.forrige = p;
+                    p = q;
+                }
             }
         }
     }
@@ -167,13 +186,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public String toString() {
+        if (tom()){
+            return "[]";
+        }
+        StringBuilder s = new StringBuilder();
+        s.append("[");
 
+        Node<T> q = hode.neste;
 
-        throw new UnsupportedOperationException();
+        while (q.neste != null) {
+            s.append(q.verdi.toString());
+            s.append(", ");
+        }
+        s.append("]");
+
+        return s.toString();
     }
 
     public String omvendtString() {
-        throw new UnsupportedOperationException();
+        if (tom()){
+            return "[]";
+        }
+        StringBuilder s = new StringBuilder();
+        s.append("[");
+
+        Node<T> q = hale.forrige;
+
+        while (q.forrige != null) {
+            s.append(q.verdi.toString());
+            s.append(", ");
+        }
+        s.append("]");
+
+        return s.toString();
     }
 
     @Override
