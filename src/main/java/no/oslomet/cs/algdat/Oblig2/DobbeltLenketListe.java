@@ -223,12 +223,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             hode.neste = hode.neste.neste;
         }
         else if (indeks == antall - 1) {
-
+            return null;
         }
-
-
-
-
+        return q.verdi;
     }
 
     @Override
