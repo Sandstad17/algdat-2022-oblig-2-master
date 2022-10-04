@@ -91,7 +91,21 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //OPPGAVE 3.B
     public Liste<T> subliste(int fra, int til) {
 
-        throw new UnsupportedOperationException();
+
+        //Kontroll for fra og til indeksene
+        indeksKontroll(fra, false);
+        indeksKontroll(til, false);
+
+        //Ny liste med navn "sublisten"
+        DobbeltLenketListe subListen = new DobbeltLenketListe<T>();
+
+        //Looper gjennom orgianle listen for å legge inn i "sublisten"
+        for (int i = fra; i < til; i++) {
+            subListen.leggInn(hent(i));
+        }
+
+        //returnerer sublisten
+        return subListen;
     }
     //
 
