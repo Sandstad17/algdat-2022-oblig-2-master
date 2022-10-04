@@ -78,7 +78,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hale.forrige = p;
 
                 p = hode.neste;
-                while (q.neste != null) {
+                while (p.neste != null) {
                     q = p.neste;
                     q.forrige = p;
                     p = q;
