@@ -167,8 +167,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //OPPGAVE 3
     @Override
     public T hent(int indeks) {
-
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks, false);
+        return finnNode(indeks).verdi;
     }
 
     private Node<T> finnNode(int indeks){
