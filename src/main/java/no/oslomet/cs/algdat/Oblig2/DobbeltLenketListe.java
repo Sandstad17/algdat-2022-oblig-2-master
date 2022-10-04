@@ -133,7 +133,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             antall++;
         }else{
             q = new Node<T>(verdi);
-            p = q.forrige;
+            //p = q.forrige;
+            hale.forrige = q;
+            antall++;
         }
         return true;
     }
