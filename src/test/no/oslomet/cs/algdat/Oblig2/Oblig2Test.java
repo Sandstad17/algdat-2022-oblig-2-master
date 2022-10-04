@@ -135,6 +135,9 @@ class Oblig2Test {
             antallFeil++;
             System.out.println("Oppgave 1q: leggInn-metoden brukes i konstruktøren!");
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 1");
+
     }
 
 
@@ -262,6 +265,9 @@ class Oblig2Test {
             System.out.println("Oppgave 2n: Dette (" + tid + " ms) gikk altfor sakte!");
             System.out.println("            Har du kodet toString slik det ble bedt om?");
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 2");
+
     }
 
     ////// Oppgave 3 /////////////////////
@@ -491,6 +497,9 @@ class Oblig2Test {
                 antallFeil++;
             }
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 3");
+
     }
 
     ////// Oppgave 4 /////////////////////
@@ -563,6 +572,9 @@ class Oblig2Test {
             System.out.println
                     ("Oppgave 4i: Skal gi indeks til første forekomst hvis like verdier!");
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 4");
+
     }
 
     ////// Oppgave 5 /////////////////////
@@ -617,7 +629,6 @@ class Oblig2Test {
                     ("Oppgave 5g: Feil i indekssjekken! 0 <= indeks <= antall er tillatt!");
 
             antallFeil++;
-            return;
         }
 
         liste = new DobbeltLenketListe<>();
@@ -645,6 +656,9 @@ class Oblig2Test {
             antallFeil++;
             System.out.println("Oppgave 5j: Feil i metoden leggInn()!");
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 5");
+
     }
 
     ///////// Oppgave 6 //////////////////////////
@@ -921,6 +935,9 @@ class Oblig2Test {
             System.out.println("ved hjelp av den andre? Eller så er en av fjern-metodene dine litt treg.");
             antallFeil++;
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 6");
+
     }
 
     //// Oppgave 7 ////////////////////////////
@@ -956,6 +973,9 @@ class Oblig2Test {
             antallFeil++;
             System.out.println("Oppgave 7d: Feil i metoden nullstill()!");
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 7");
+
     }
 
     //// Oppgave 8 ////////////////////////////
@@ -1148,6 +1168,9 @@ class Oblig2Test {
                 antallFeil++;
             }
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 8");
+
     }
 
     ////// Oppgave 9 /////////////////////
@@ -1240,6 +1263,9 @@ class Oblig2Test {
                 antallFeil++;
             }
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 9");
+
     }
 
     ////// Oppgave 10 /////////////////////
@@ -1294,6 +1320,9 @@ class Oblig2Test {
             System.out.println("Oppgave 10f: Metoden sorterer feil!");
             antallFeil++;
         }
+
+        assertEquals(0, antallFeil, "Du har for mange feil i oppgave 10");
+
     }
 
 }

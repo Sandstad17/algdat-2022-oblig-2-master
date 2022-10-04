@@ -127,11 +127,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     //OPPGAVE 3
     @Override
     public T hent(int indeks) {
+            
 
         throw new UnsupportedOperationException();
     }
 
-    private Node<T> finnNode(int indeks) {
+    private Node<T> finnNode(int indeks){
         //iterativ løsnin
         Node<T> p = null;
 
