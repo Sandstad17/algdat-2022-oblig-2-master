@@ -132,7 +132,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     q = q.neste;
                 }
             }
-            if (indeks == 0) {
+            if (indeks == 0 && !tom()) {
                 hode.neste = ny;
                 ny.neste = q;
                 q.forrige = ny;
