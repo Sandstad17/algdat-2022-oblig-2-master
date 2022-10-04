@@ -206,7 +206,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
-        throw new UnsupportedOperationException();
+
+        //Lager en variabel av typen Node
+        Node<T> node = finnNode(indeks);
+
+        //Lagrer forrige verdi i gammelVerdi variabel, slik at vi kan returnere senere
+        T gammelVerdi = node.verdi;
+
+        //Oppdaterer indeks til nyverdi
+        node.verdi = nyverdi;
+
+        return gammelVerdi;
     }
 
     @Override
