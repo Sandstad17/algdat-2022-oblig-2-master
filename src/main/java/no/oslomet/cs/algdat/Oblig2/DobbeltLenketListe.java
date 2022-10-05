@@ -51,42 +51,39 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         if (a == null) {
             throw new NullPointerException("Tabellen a er null!");
         }
+
         Node<T> p; //Previous
         Node<T> q; //Qurrent
 
         antall = 0;
+        endringer = 0;
+
+        hode = new Node<T>(null);
+        hale = new Node<T>(null);
 
         if (a.length != 0) {
+            p = hode;
             int i = 0;
-            while (i < a.length && a[i] == null) {
-                i++;
-            }
-            if (i < a.length) {
-
-                hode = new Node<T>(null);
-                hode.neste = q = new Node<T>(a[i]);
-                antall++;
-                i++;
-                p = q;
-
-                while (i < a.length) {
-                    if (a[i] != null) {
-                        p.neste = q = new Node<T>(a[i]);
-                        antall++;
-                        p = q;
-                    }
-                    i++;
-                }
-
-                hale = new Node<T>(null);
-                hale.forrige = p;
-
-                p = hode.neste;
-                while (p.neste != null) {
-                    q = p.neste;
-                    q.forrige = p;
+            while (i < a.length) {
+                if (a[i] != null) {
+                    q = new Node<T>(a[i]);
+                    p.neste = q;
+                    antall++;
                     p = q;
                 }
+                i++;
+            }
+
+            if (antall > 0) {
+                p = q = hode.neste;
+                if(antall > 1) {
+                    while (q.neste != null) {
+                        q = q.neste;
+                        q.forrige = p;
+                        p = q;
+                    }
+                }
+                hale.forrige = q;
             }
         }
     }
@@ -119,27 +116,40 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean tom() {
-        return antall == 0;
+        if (antall == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override
     public boolean leggInn(T verdi) {
         Objects.requireNonNull(verdi);
+
         Node<T> p;
         Node<T> q;
+
+        q = new Node<T>(verdi,null,null);
+
         if(tom()){
-            q = new Node<T>(verdi);
             hode.neste = q;
-            hale.forrige = q;
-            antall++;
-        }else{
-            q = new Node<T>(verdi);
+
+            antall ++;
+            endringer ++;
+        }
+        else{
             p = hale.forrige;
             p.neste = q;
-            hale.forrige = q;
-            antall++;
+            q.forrige = p;
+
+            antall ++;
+            endringer ++;
         }
+        hale.forrige = q;
         return true;
+
     }
 
     //Funker ikke, kom tilbake i oppgave 5
@@ -180,6 +190,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
                 ny.neste = etter;
                 etter.forrige = ny;
+
                 q.neste = ny;
                 ny.forrige = q;
             }
