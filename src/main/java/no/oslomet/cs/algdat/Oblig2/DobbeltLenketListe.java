@@ -205,7 +205,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean inneholder(T verdi) {
-        throw new UnsupportedOperationException();
+        Node<T> q = hode;
+
+        while (q.neste != null) {
+            q = q.neste;
+            if (q.verdi.equals(verdi)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     //OPPGAVE 3
@@ -243,12 +251,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public int indeksTil(T verdi) {
         int i = 0;
-        if (antall < 0) {
-            Node<T> q = hode.neste;
+        if (antall > 0) {
+            Node<T> q = hode;
             while (q.neste != null) {
-                if (q.verdi == verdi) {
+                q = q.neste;
+                if (q.verdi.equals(verdi)) {
                     return i;
                 }
+                i++;
             }
         }
         return -1;
@@ -279,11 +289,54 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean fjern(T verdi) {
-        throw new UnsupportedOperationException();
+
+        Node<T> q = hode;
+        Node<T> p;
+        Node<T> n;
+
+        int i = 0;
+
+        while (q.neste != null) {
+            q = q.neste;
+            if (verdi.equals(q.verdi)) {
+
+                q.verdi = null;
+                if (antall != 0) {
+                    if (i == 0) {
+                        n = q.neste;
+
+                        hode.neste = n;
+                        n.forrige = null;
+                    }
+                    else if (i == antall - 1) {
+                        p = q.forrige;
+
+                        hale.forrige = p;
+                        p.neste = null;
+                    }
+                    else {
+                        n = q.neste;
+                        p = q.forrige;
+
+                        n.forrige = p;
+                        p.neste = n;
+                    }
+                }
+                q.neste = null;
+                q.forrige = null;
+
+                antall --;
+                endringer ++;
+                break;
+            }
+            i++;
+        }
+        return false;
     }
 
     @Override
     public T fjern(int indeks) {
+        indeksKontroll(indeks, false);
 
         Node<T> q = hode.neste;
 
@@ -305,9 +358,11 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             q.forrige.neste = q.neste;
             q.neste.forrige = q.forrige;
         }
-        endringer ++;
-        return q.verdi;
 
+        antall --;
+        endringer ++;
+
+        return q.verdi;
     }
 
     @Override
@@ -327,8 +382,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             q.verdi = null;
             q.forrige = null;
         }
-
-
 
         hode.neste = null;
         hale.forrige = null;
