@@ -6,7 +6,6 @@ package no.oslomet.cs.algdat.Oblig2;
 
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -93,11 +92,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
 
         //Kontroll for fra og til indeksene
-        indeksKontroll(fra, false);
-        indeksKontroll(til, false);
+        fratilKontroll(fra,true);
+        fratilKontroll(til,true);
 
+        if (fra > til) {
+            throw new IllegalArgumentException("Til er før i listen enn fra");
+            //Kunne eventuelt returnert "[]"
+        }
         //Ny liste med navn "sublisten"
-        DobbeltLenketListe subListen = new DobbeltLenketListe<T>();
+        DobbeltLenketListe<T> subListen = new DobbeltLenketListe<T>();
 
         //Looper gjennom orgianle listen for å legge inn i "sublisten"
         for (int i = fra; i < til; i++) {
@@ -213,31 +216,28 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks){
-        //iterativ løsnin
-        Node<T> p = null;
+        //Iterativ løsnin
+        Node<T> p;
 
         int midten = antall/2;
 
-        if (indeks < midten) {
-            p = hode;
+        if (indeks <= midten) {
+            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+            p = hode.neste;
             for(int i = 0; i < indeks; i++){
                p = p.neste;
             }
-            return p;
-            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
         }
-        if(indeks > midten) {
-            p = hale;
-            for(int i = antall; i > indeks; i--){
+        else {
+            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+            p = hale.forrige;
+            for(int i = antall - 1 ; i > indeks; i--){
                 p = p.forrige;
             }
-            return p;
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
         }
-
-        return p; //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+        return p;
     }
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+
 
 
     @Override
@@ -247,6 +247,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T oppdater(int indeks, T nyverdi) {
+        //Tillater ikke nullverdier i nytt objekt
+        Objects.requireNonNull(nyverdi);
 
         //Sjekk om det er lovlig innput
         indeksKontroll(indeks, false);
@@ -388,6 +390,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
         throw new UnsupportedOperationException();
+    }
+
+    private void fratilKontroll(int indeks, boolean leggInn) {
+        if (indeks < 0 || !leggInn && (indeks > antall - 1) || leggInn && (indeks > antall)) {
+            throw new IndexOutOfBoundsException(melding(indeks));
+        }
     }
 
 } // class DobbeltLenketListe
