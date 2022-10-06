@@ -242,7 +242,16 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public int indeksTil(T verdi) {
-        throw new UnsupportedOperationException();
+        int i = 0;
+        if (antall < 0) {
+            Node<T> q = hode.neste;
+            while (q.neste != null) {
+                if (q.verdi == verdi) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -296,14 +305,36 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             q.forrige.neste = q.neste;
             q.neste.forrige = q.forrige;
         }
-
+        endringer ++;
         return q.verdi;
 
     }
 
     @Override
     public void nullstill() {
-        throw new UnsupportedOperationException();
+
+        if (antall != 0) {
+            Node<T> p = hode;
+            Node<T> q = p.neste;
+
+            while (q.neste != null) {
+                p.verdi = null;
+                p.neste = null;
+                p.forrige = null;
+                p = q;
+                q = q.neste;
+            }
+            q.verdi = null;
+            q.forrige = null;
+        }
+
+
+
+        hode.neste = null;
+        hale.forrige = null;
+
+        antall = 0;
+        endringer ++;
     }
 
     @Override
