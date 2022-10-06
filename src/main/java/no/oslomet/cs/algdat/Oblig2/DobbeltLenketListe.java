@@ -161,46 +161,47 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //indeks må være gyldig ( fra 0 til n-tall )
         //verdien skal legges inn på indeksen som er satt
         //
+        Objects.requireNonNull(verdi);
+        indeksKontroll(indeks, true);
 
-        if(verdi != null && indeks <= antall) {
-            Node<T> q = hode.neste;
+        Node<T> h = hode;   //Hode eller node før ny settes inn
+        Node<T> t = hale;   //Hale eller noden etter der ny settes inn
+        Node<T> ny = new Node<T>(verdi);
 
-            Node<T> ny = new Node<T>(verdi);
+        if (tom()) {
+            h.neste = ny;
+            t.forrige = ny;
+        }
+        else{
+            int i = 0;
+            for (;i < indeks; i++) {
+                h = h.neste;
+            }
 
-            if (tom()) {
-                hode.neste = ny;
-                hale.forrige = ny;
-                antall ++;
-                endringer ++;
+            if (i == 0) {
+                t = h.neste;
+                ny.neste = h.neste;
+                h.neste = ny;
+                t.forrige = ny;
             }
-            else{
-                for (int i = 0; i < indeks; i++) {
-                    q = q.neste;
-                }
-            }
-            if (indeks == 0 && !tom()) {
-                hode.neste = ny;
-                ny.neste = q;
-                q.forrige = ny;
-            }
-            else if (indeks == antall) {
-                hale.forrige = ny;
-                ny.forrige = q;
-                q.neste = ny;
+            else if (i == antall) {
+                t.forrige = ny;
+                ny.forrige = h;
+                h.neste = ny;
             }
             else {
-                Node<T> etter = q.neste;
+                t = h.neste;
 
-                ny.neste = etter;
-                etter.forrige = ny;
+                h.neste = ny;
+                t.forrige = ny;
 
-                q.neste = ny;
-                ny.forrige = q;
+                ny.neste = t;
+                ny.forrige = h;
+
             }
-
-            antall ++;
-            endringer++;
         }
+        antall ++;
+        endringer ++;
     }
 
     @Override
@@ -477,7 +478,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private void fratilKontroll(int indeks, boolean leggInn) {
-        if (indeks < 0 || !leggInn && (indeks > antall - 1) || leggInn && (indeks > antall)) {
+        if (indeks < 0 || (!leggInn && (indeks >= antall)) || (leggInn && (indeks > antall))) {
             throw new IndexOutOfBoundsException(melding(indeks));
         }
     }
