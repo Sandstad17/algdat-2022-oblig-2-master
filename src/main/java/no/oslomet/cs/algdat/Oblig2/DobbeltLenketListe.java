@@ -300,6 +300,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     q = q.neste;
                     i++;
                 }
+                if (!q.verdi.equals(verdi)){
+                    return false;
+                }
 
                 Node<T> p = q.forrige;                  //Node før
                 Node<T> n = q.neste;                  //Node etter
