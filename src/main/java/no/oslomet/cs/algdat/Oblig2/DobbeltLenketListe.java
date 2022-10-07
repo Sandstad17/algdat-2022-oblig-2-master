@@ -342,7 +342,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> n = hale;
 
         if (antall == 1) {
-            p.neste = null;
+            p.forrige = null;
             n.neste = null;
         }
         else {
