@@ -305,15 +305,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 Node<T> n = q.neste;                  //Node etter
                 if (antall == 1) {
                     hode.neste = null;
-                    hale.neste = null;
+                    hale.forrige = null;
                 }
                 else if (i == 0) {
-                    hode.neste = n;
+                    n = hode.neste.neste;
                     n.forrige = null;
+                    hode.neste = n;
                 }
                 else if (i == antall - 1) {
-                    hale.forrige = p;
+                    p = hale.forrige.forrige;
                     p.neste = null;
+                    hale.forrige = p;
                 }
                 else {
                     n.forrige = p;
