@@ -294,26 +294,31 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> q = hode.neste;     //Nåværende node, starter i indeks 0
 
         int i = 0;
-        if (!verdi.equals(null)) {
+        if (verdi != null) {
             if (antall > 0) {
                 while (q.neste != null && i < antall && !q.verdi.equals(verdi)) {
                     q = q.neste;
                     i++;
+                }
+                if (!q.verdi.equals(verdi)){
+                    return false;
                 }
 
                 Node<T> p = q.forrige;                  //Node før
                 Node<T> n = q.neste;                  //Node etter
                 if (antall == 1) {
                     hode.neste = null;
-                    hale.neste = null;
+                    hale.forrige = null;
                 }
                 else if (i == 0) {
-                    hode.neste = n;
+                    n = hode.neste.neste;
                     n.forrige = null;
+                    hode.neste = n;
                 }
                 else if (i == antall - 1) {
-                    hale.forrige = p;
+                    p = hale.forrige.forrige;
                     p.neste = null;
+                    hale.forrige = p;
                 }
                 else {
                     n.forrige = p;
@@ -350,11 +355,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 q = q.neste;
             }
             if (indeks == 0) {
-                p.neste = n;
+                n = q.neste;
+
                 n.forrige = null;
+                p.neste = n;
             }
             else if (indeks == antall - 1) {
-                n.forrige = q;
+                p = q.forrige;
+
+                n.forrige = p;
                 p.neste = null;
             }
             else {
