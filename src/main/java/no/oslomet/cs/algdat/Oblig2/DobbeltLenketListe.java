@@ -482,37 +482,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override
         public T next() {
 
+            //Forløpig funker koden (oppgave 8 a)
+
+            //Antar at vi har gjort feil i while-løkken ved å ikke returnere "denne" for hver itterasjon
+
+            //Erik ikke rør med mindre det er liv og død (husk å legge til kommentarer om du endrer noe)
+
             if(iteratorendringer != endringer) {
                 throw new ConcurrentModificationException();
             }
-
-            /*while(denne != null) {
-                if (hasNext()) {
-                    fjernOK = true;
-                    return denne.verdi;
-                    denne = denne.neste;
-                }
-                else {
-                    throw new NoSuchElementException();
-                    return denne.verdi;
-                }
-            }
-             */
-
 
             if (hasNext()) {
                 while (hasNext()) {
                     fjernOK = true;
                     denne = denne.neste;
                 }
-            }
 
+            }
             else {
                 throw new NoSuchElementException();
             }
-
             return denne.verdi;
-
         }
 
         @Override
