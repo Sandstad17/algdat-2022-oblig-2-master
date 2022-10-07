@@ -291,74 +291,83 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     @Override
     public boolean fjern(T verdi) {
 
-        Node<T> q = hode;
-        Node<T> p;
-        Node<T> n;
+        Node<T> q = hode.neste;     //Nåværende node, starter i indeks 0
 
         int i = 0;
-
-        while (q.neste != null) {
-            q = q.neste;
-            if (verdi.equals(q.verdi)) {
-
-                q.verdi = null;
-                if (antall != 0) {
-                    if (i == 0) {
-                        n = q.neste;
-
-                        hode.neste = n;
-                        n.forrige = null;
-                    }
-                    else if (i == antall - 1) {
-                        p = q.forrige;
-
-                        hale.forrige = p;
-                        p.neste = null;
-                    }
-                    else {
-                        n = q.neste;
-                        p = q.forrige;
-
-                        n.forrige = p;
-                        p.neste = n;
-                    }
+        if (!verdi.equals(null)) {
+            if (antall > 0) {
+                while (q.neste != null && i < antall && !q.verdi.equals(verdi)) {
+                    q = q.neste;
+                    i++;
                 }
+
+                Node<T> p = q.forrige;                  //Node før
+                Node<T> n = q.neste;                  //Node etter
+                if (antall == 1) {
+                    hode.neste = null;
+                    hale.neste = null;
+                }
+                else if (i == 0) {
+                    hode.neste = n;
+                    n.forrige = null;
+                }
+                else if (i == antall - 1) {
+                    hale.forrige = p;
+                    p.neste = null;
+                }
+                else {
+                    n.forrige = p;
+                    p.neste = n;
+                }
+                //Fjerner q
                 q.neste = null;
                 q.forrige = null;
+                q.verdi = null;
 
                 antall --;
                 endringer ++;
-                break;
+                return true;
             }
-            i++;
         }
+
         return false;
     }
 
     @Override
     public T fjern(int indeks) {
-        indeksKontroll(indeks, false);
+        fratilKontroll(indeks, false);
 
         Node<T> q = hode.neste;
+        Node<T> p = hode;
+        Node<T> n = hale;
 
-        for (int i = 0; i < indeks; i++) {
-            q = q.neste;
-        }
-
-        if (indeks == 0) {
-            q = hode.neste.neste;
-
-            q.forrige = null;
-            hode.neste = q;
-        }
-        else if (indeks == antall - 1) {
-            hale.forrige = q.forrige;
-            hale.forrige.neste = null;
+        if (antall == 1) {
+            p.neste = null;
+            n.neste = null;
         }
         else {
-            q.forrige.neste = q.neste;
-            q.neste.forrige = q.forrige;
+            for (int i = 0; i < indeks; i++) {
+                q = q.neste;
+            }
+            if (indeks == 0) {
+                p.neste = n;
+                n.forrige = null;
+            }
+            else if (indeks == antall - 1) {
+                n.forrige = q;
+                p.neste = null;
+            }
+            else {
+                p = q.forrige;
+                n = q.neste;
+
+                p.neste = n;
+                n.forrige = p;
+            }
         }
+        //Fjerner q
+        q.neste = null;
+        q.forrige = null;
 
         antall --;
         endringer ++;
