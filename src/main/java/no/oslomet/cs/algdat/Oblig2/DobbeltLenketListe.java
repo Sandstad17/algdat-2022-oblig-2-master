@@ -228,22 +228,27 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //Iterativ løsnin
         Node<T> p;
 
+        //finner midten av lenket lista
         int midten = antall/2;
 
+        //Hvis indeksen er mindre eller lik midten skal den lete fra hodet og til midten, hvis den
+        //er større skal den lete fra halen og bakover.
+
         if (indeks <= midten) {
-            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
+            //hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
             p = hode.neste;
             for(int i = 0; i < indeks; i++){
                p = p.neste;
             }
         }
         else {
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
+            //hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
             p = hale.forrige;
-            for(int i = antall - 1 ; i > indeks; i--){
+            for(int i = antall - 1; i > indeks; i--){
                 p = p.forrige;
             }
         }
+        //returnerer posisjonen til noden
         return p;
     }
 
@@ -343,7 +348,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         if (antall == 1) {
             p.neste = null;
-            n.neste = null;
+            n.forrige = null;
         }
         else {
             for (int i = 0; i < indeks; i++) {
