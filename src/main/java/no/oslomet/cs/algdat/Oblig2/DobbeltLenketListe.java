@@ -110,6 +110,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //returnerer sublisten
         return subListen;
     }
+
     //
 
     @Override
@@ -452,11 +453,12 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException();
+        return new DobbeltLenketListeIterator();
     }
 
     public Iterator<T> iterator(int indeks) {
-        throw new UnsupportedOperationException();
+        indeksKontroll(indeks,false);
+        return new DobbeltLenketListeIterator(indeks);
     }
 
     private class DobbeltLenketListeIterator implements Iterator<T> {
@@ -465,14 +467,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         private int iteratorendringer;
 
         private DobbeltLenketListeIterator() {
-            denne = hode;     // p starter på den første i listen
+            denne = hode.neste;     // p starter på den første i listen
             fjernOK = false;  // blir sann når next() kalles
             iteratorendringer = endringer;  // teller endringer
         }
 
         private DobbeltLenketListeIterator(int indeks) {
-            throw new UnsupportedOperationException();
+            denne = finnNode(indeks);
+            fjernOK = false;  // blir sann når next() kalles
+            iteratorendringer = endringer;  // teller endringer
         }
+
 
         @Override
         public boolean hasNext() {
@@ -488,25 +493,60 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
             //Erik ikke rør med mindre det er liv og død (husk å legge til kommentarer om du endrer noe)
 
-            if(iteratorendringer != endringer) {
+            if (iteratorendringer != endringer) {
                 throw new ConcurrentModificationException();
             }
 
             if (hasNext()) {
-                while (hasNext()) {
-                    fjernOK = true;
-                    denne = denne.neste;
-                }
+                T temp = denne.verdi;
+                fjernOK = true;
+                denne = denne.neste;
+                return temp;
             }
             else {
                 throw new NoSuchElementException();
             }
-            return denne.verdi;
         }
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException();
+            if(!fjernOK){
+                throw new IllegalStateException("Dette elementet kan ikke fjernes!");
+            }
+            else if(endringer != iteratorendringer){
+                throw  new ConcurrentModificationException();
+            }
+            else{
+                fjernOK = false;
+                Node<T> q = hode.neste;
+                Node<T> p = hode;
+                Node<T> n = hale;
+
+                if (antall == 1) {
+                    p.forrige = null;
+                    n.neste = null;
+                }
+                else {
+
+                    if (denne.forrige == null) { //Første element
+                        n = q.neste;
+                        n.forrige = null;
+                        p.neste = n;
+                    }
+                    else if (denne.neste == null) { //Siste element
+                        p = q.forrige;
+                        n.forrige = p;
+                        p.neste = null;
+                    }
+                    else { //Alle andre element
+                        q = denne;
+                        p = q.forrige;
+                        n = q.neste;
+
+                        p.neste = n;
+                        n.forrige = p;
+                    }
+            }
         }
 
     } // class DobbeltLenketListeIterator
