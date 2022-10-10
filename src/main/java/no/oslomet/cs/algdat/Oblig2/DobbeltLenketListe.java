@@ -119,7 +119,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean tom() {
-        if (antall == 0) {
+        if(antall == 0) {
             return true;
         }
         else {
@@ -538,6 +538,9 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                         n.forrige = p;
                     }
                 }
+                endringer++;
+                iteratorendringer++;
+                antall--;
             }
         }
 
