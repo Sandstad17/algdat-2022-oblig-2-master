@@ -110,7 +110,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         //returnerer sublisten
         return subListen;
     }
-
     //
 
     @Override
@@ -478,7 +477,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             iteratorendringer = endringer;  // teller endringer
         }
 
-
         @Override
         public boolean hasNext() {
             return denne != null;
@@ -486,7 +484,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-
             //Forløpig funker koden (oppgave 8 a)
 
             //Antar at vi har gjort feil i while-løkken ved å ikke returnere "denne" for hver itterasjon
@@ -502,21 +499,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 fjernOK = true;
                 denne = denne.neste;
                 return temp;
-            }
-            else {
+            } else {
                 throw new NoSuchElementException();
             }
         }
 
         @Override
         public void remove() {
-            if(!fjernOK){
+            if (!fjernOK) {
                 throw new IllegalStateException("Dette elementet kan ikke fjernes!");
-            }
-            else if(endringer != iteratorendringer){
-                throw  new ConcurrentModificationException();
-            }
-            else{
+            } else if (endringer != iteratorendringer) {
+                throw new ConcurrentModificationException();
+            } else {
                 fjernOK = false;
                 Node<T> q = hode.neste;
                 Node<T> p = hode;
@@ -525,20 +519,17 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 if (antall == 1) {
                     p.forrige = null;
                     n.neste = null;
-                }
-                else {
+                } else {
 
                     if (denne.forrige == null) { //Første element
                         n = q.neste;
                         n.forrige = null;
                         p.neste = n;
-                    }
-                    else if (denne.neste == null) { //Siste element
+                    } else if (denne.neste == null) { //Siste element
                         p = q.forrige;
                         n.forrige = p;
                         p.neste = null;
-                    }
-                    else { //Alle andre element
+                    } else { //Alle andre element
                         q = denne;
                         p = q.forrige;
                         n = q.neste;
@@ -546,6 +537,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                         p.neste = n;
                         n.forrige = p;
                     }
+                }
             }
         }
 
