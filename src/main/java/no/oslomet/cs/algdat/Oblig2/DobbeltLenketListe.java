@@ -484,10 +484,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            //Forløpig funker koden (oppgave 8 a)
-
             //Antar at vi har gjort feil i while-løkken ved å ikke returnere "denne" for hver itterasjon
-
             //Erik ikke rør med mindre det er liv og død (husk å legge til kommentarer om du endrer noe)
 
             if (iteratorendringer != endringer) {
@@ -507,36 +504,37 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         @Override
         public void remove() {
             if (!fjernOK) {
-                throw new IllegalStateException("Dette elementet kan ikke fjernes!");
-            } else if (endringer != iteratorendringer) {
+                throw new IllegalStateException();
+            }
+            if(antall == 0){
+                throw new NoSuchElementException();
+            }
+
+            else if (endringer != iteratorendringer) {
                 throw new ConcurrentModificationException();
-            } else {
-                fjernOK = false;
-                Node<T> q = hode.neste;
-                Node<T> p = hode;
-                Node<T> n = hale;
+            }
 
-                if (antall == 1) {
-                    p.forrige = null;
-                    n.neste = null;
-                } else {
+            else {
+                if(antall == 1){
+                    hode = null;
+                    hale = null;
+                }
 
-                    if (denne.forrige == null) { //Første element
-                        n = q.neste;
-                        n.forrige = null;
-                        p.neste = n;
-                    } else if (denne.neste == null) { //Siste element
-                        p = q.forrige;
-                        n.forrige = p;
-                        p.neste = null;
-                    } else { //Alle andre element
-                        q = denne;
-                        p = q.forrige;
-                        n = q.neste;
+                else if(denne == null){
+                    hale.forrige = hale.forrige.forrige;
+                    hale.forrige.neste = null;
+                }
+                else if(denne == hode.neste.neste){ //første element
+                    hode.neste = hode.neste.neste;
+                    hode.neste.forrige = null;
+                }
+                else{
+                    Node<T> q = denne.forrige;
+                    Node<T> p = q.forrige;
+                    Node<T> r = q.neste;
 
-                        p.neste = n;
-                        n.forrige = p;
-                    }
+                    p.neste = r;
+                    r.forrige = p;
                 }
                 endringer++;
                 iteratorendringer++;
