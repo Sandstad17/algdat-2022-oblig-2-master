@@ -497,7 +497,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     fjernOK = true;
                     denne = denne.neste;
                 }
-
             }
             else {
                 throw new NoSuchElementException();
