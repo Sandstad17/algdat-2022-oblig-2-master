@@ -450,6 +450,8 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         return s.toString();
     }
 
+
+
     @Override
     public Iterator<T> iterator() {
         return new DobbeltLenketListeIterator();
@@ -547,8 +549,18 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        for (int i = 0; i<liste.antall(); i++){
+            for (int j = 0; j <liste.antall(); j++){
+                if(c.compare(liste.hent(i),liste.hent(j)) < 0){
+                    T temp = liste.hent(i);
+                    liste.oppdater(i,liste.hent(j));
+                    liste.oppdater(j,temp);
+                }
+            }
+        }
     }
+
+
 
     private void fratilKontroll(int indeks, boolean leggInn) {
         if (indeks < 0 || (!leggInn && (indeks >= antall)) || (leggInn && (indeks > antall))) {
