@@ -54,6 +54,18 @@ I oppgave 7 så gikk vi frem ved å gjennomløpe alle nodene, sette verdien dere
 Dermed kan søppeltømmeren fjerne dem fra minnet.
 
 
+Oppgave 8 var en omfattende oppgave med flere forskjellige deloppgaver. Vi starter med å gjøre noen kontroll-setninger
+for å sjekke om det er lovlige argumenter inn i metoden. Vi sjekker blant annet om itteratorendringer != endringer, og
+om hasNext() for denne er false. For hver av disse tilfellene sendes en feilmelding. Hvis ikke disse tilfellene oppstår 
+returnerer vi denne.verdi, setter fjernOk til true, og til slutt setter denne til den neste noden i listen.
+Etter dette lagde vi en instans av iteratorklassen.
+Neste steg var DobbeltLenkeListeItterator konstruktør. Her byttet vi denne = hode.neste med denne = finnNode(indeks).
+Til slutt lagde vi metoden iterator(int indeks). Først starter vi med å sjekke lovligheten til parameteret ved å sende
+det inn i indeksKontroll(), om det ikke oppstår noen feilmelding, vil metoden returnere en ny instans av
+DobbeltLenkeetListeIterator(indeks).
+
+
+
 I oppgave 9 skulle vi lage kode for remove(). Oppgaven ble først løst ved å behandle edge-cases som at listen er tom 
 eller at man ikke ha lov til å fjerne, og at endringer != itterattorendringer. I disse tilfelle ble det kastet en error.
 Så sjekker vi om antall i listen er 1, isåfall skal hode.neste og hale.forrige bli nullet. Om ikke det er tilfellet
