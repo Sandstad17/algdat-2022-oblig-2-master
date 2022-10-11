@@ -11,8 +11,9 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Vi har delegert ansvar slik at vi satt sammen og jobbet med hver oppgave i rekkefølge til den ble løst, så gå videre til den neste.
-* 
+* Vi har delegert ansvar slik at vi satt sammen og jobbet med hver oppgave i
+  rekkefølge til den ble løst, så gå videre til den neste. 
+
 
 
 # Oppgavebeskrivelse
