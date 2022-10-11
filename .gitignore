@@ -37,3 +37,4 @@ build/classes/java/main/no/oslomet/cs/algdat/Oblig2/Beholder.class
 *.lock
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .gradle/7.4/fileHashes/fileHashes.lock
+src/main/java/no/oslomet/cs/algdat/Oblig2/Main_For_Test.java
