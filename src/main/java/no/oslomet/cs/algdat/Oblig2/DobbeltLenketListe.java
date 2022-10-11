@@ -32,14 +32,14 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     // instansvariabler
-    private Node<T> hode;          // peker til den første i listen
-    private Node<T> hale;          // peker til den siste i listen
+    private final Node<T> hode;          // peker til den første i listen
+    private final Node<T> hale;          // peker til den siste i listen
     private int antall;            // antall noder i listen
     private int endringer;         // antall endringer i listen
 
     public DobbeltLenketListe() {
-        hode = new Node<T>(null);
-        hale = new Node<T>(null);
+        hode = new Node<>(null);
+        hale = new Node<>(null);
 
         antall = 0;
         endringer = 0;
@@ -57,15 +57,15 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         antall = 0;
         endringer = 0;
 
-        hode = new Node<T>(null);
-        hale = new Node<T>(null);
+        hode = new Node<>(null);
+        hale = new Node<>(null);
 
         if (a.length != 0) {
             p = hode;
             int i = 0;
             while (i < a.length) {
                 if (a[i] != null) {
-                    q = new Node<T>(a[i]);
+                    q = new Node<>(a[i]);
                     p.neste = q;
                     antall++;
                     p = q;
@@ -100,7 +100,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             //Kunne eventuelt returnert "[]"
         }
         //Ny liste med navn "sublisten"
-        DobbeltLenketListe<T> subListen = new DobbeltLenketListe<T>();
+        DobbeltLenketListe<T> subListen = new DobbeltLenketListe<>();
 
         //Looper gjennom orgianle listen for å legge inn i "sublisten"
         for (int i = fra; i < til; i++) {
@@ -119,12 +119,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public boolean tom() {
-        if(antall == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return antall == 0;
     }
 
     @Override
@@ -134,22 +129,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p;
         Node<T> q;
 
-        q = new Node<T>(verdi,null,null);
+        q = new Node<>(verdi,null,null);
 
         if(tom()){
             hode.neste = q;
 
-            antall ++;
-            endringer ++;
         }
         else{
             p = hale.forrige;
             p.neste = q;
             q.forrige = p;
 
-            antall ++;
-            endringer ++;
         }
+        antall ++;
+        endringer ++;
         hale.forrige = q;
         return true;
 
@@ -166,7 +159,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         Node<T> h = hode;   //Hode eller node før ny settes inn
         Node<T> t = hale;   //Hale eller noden etter der ny settes inn
-        Node<T> ny = new Node<T>(verdi);
+        Node<T> ny = new Node<>(verdi);
 
         if (tom()) {
             h.neste = ny;
