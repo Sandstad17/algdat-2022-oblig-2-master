@@ -21,14 +21,30 @@ I oppgave 1 så gikk vi sette opp en konstruktør for klassen dobbeltlenket list
 Denne konstruktøren starter med to tomme noder som hode og hale, og bygger derfra ut en enkeltlenket liste av ytterligere elementer i listen det bygges fra.
 Etter den enkeltlenkede listen er opprettet, går den gjennom igjen og legger inn bakoverpekerene slik at det blir en dobbeltlenket liste.
 
-I oppgave 2 så brukte vi en ... til å ...
+I oppgave 2 så gikk vi frem ved å hoppe over hode-noden, grunnet strukturen vi har kodet, og hente hver verdi etter, som legges til i en stringbuilder.
+Returnerer strengen når alle noder er gjennomløpt.
+LeggInn-metoden er laget slik at den legger inn nye verdier først i listen ved å binde om hode-pekeren til den nye noden, nye noden får neste-peker til gamle første, og gamle første får forrige-peker til ny noden.
 
+I oppgave 3 så gikk vi frem ved å for finnNode-metoden å gjennomløpe listen til oppgitt indeks, og så hente verdien som skal returneres.
+Fratilkontroll er kodet slik at den enten sjekker om indeksen er innenfor antallet noder, eller antallet plasser mellom, og på endene av nodene som er i listen. Hvis oppgitt indeks faller utenfor kravene, kastes en exception.
 I oppgave 3a)
-setter vi Node til p og så finner vi "midten" ved å ta antall og dele det på to. 
-derretter har vi if setninger som sier hvis indeksen vi leter etter er større en midten, 
+setter vi Node til p og så finner vi "midten" ved å ta antall og dele det på to.
+derretter har vi if setninger som sier hvis indeksen vi leter etter er større en midten,
 så skal vi gå fra Noden som blir satt til hode.neste og videre ved hjelp av en for løkke
-fram til indeksen er nådd. hvis ikke skal vi gå fra noden som er hale.forrige og gå igjennom 
+fram til indeksen er nådd. hvis ikke skal vi gå fra noden som er hale.forrige og gå igjennom
 til vi finner indeksen, tilslutt returneres Noden(p). I oppgave b) sjekker vi fratilkontroll først.
 Etter dette sjekker vi om "til" er før "fra" og gir en illegalArgumentexception om dette stemmer.
 derretter oppretter vi en ny dobbeltlenkeliste ved navn sublisten. Derretter looper vi gjennom
 og bruker leggInn for å legge inn verdiene fra "fra" til "til". tilslutt returneres sublisten.
+
+I oppgave 4 så gikk vi frem ved å gjennomløpe listen til den gitte verdien enten finnes, eller slutten av listen nås.
+For siste verdie sjekkes igjen nåværende verdi mot søkeverdi, og om de ikke matcher, returneres false.
+For tom søkeverdi (null), returneres også false.
+Inneholder-metoden fungerer noe likt, i at den gjennomløper alle nodene, til den finner ønsket verdi, og i så fall returnerer true.
+Ellers returneres false.
+
+I oppgave 5 så gikk vi frem ved å gjennomløpe nodene til oppgitt indeks, så sette nodene på hver side inn i hjelpenoder, slik at ny node kan settes inn mellom de eksisterende. Så settes pekere på plass igjen.
+
+
+I oppgave 7 så gikk vi frem ved å gjennomløpe alle nodene, sette verdien deres til null, fjerne pekerene deres. Dermed kan søppeltømmeren fjerne dem fra minnet.
+
