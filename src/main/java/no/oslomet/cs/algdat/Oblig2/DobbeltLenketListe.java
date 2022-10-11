@@ -347,7 +347,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         Node<T> p = hode;
         Node<T> n = hale;
 
-        //Oma antall
+        //Om antall == 1 så nuller vi hode og halepekere for å "slette" det ene elementet
         if (antall == 1) {
             p.neste = null;
             n.forrige = null;
