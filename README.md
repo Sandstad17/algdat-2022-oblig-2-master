@@ -62,3 +62,10 @@ element. Om vi ikke er bakerst så sjekker vi om vi er forrest i listen. I dette
 på det da var nest først. Om ingen av de overnevnte situasjonene påtreffes så peker vi nodene på hver side av noden 
 vi skal fjerne, på hverandre. Det fører til at java sin garbage-collector tar av seg jobben ved å fjerne noden vi 
 behandlet.
+
+
+I oppgave 10 skulle vi lagde vi en metode som sorterer en liste basert på typen T. Først spesifiserer vi at listen ikke
+kan være null. Deretter benytter vi oss av en nested for-loop. Den yttre loopen kjører fra indeks 0 til liste.antall.
+Den indre loopen kjører på likt vis. På denne måten kan vi sjekke verdien fra den ytre-loopen med alle verdiene fra
+den indre-loopen for å avgjøre hvem som er "minst". Deretter setter vi den "minste" på indeksen til den yttre-loopen.
+Vi har mulighetene til å endre plassene med en manuel "bytt-funksjon" i den inndre loopen.
