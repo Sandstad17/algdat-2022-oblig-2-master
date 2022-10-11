@@ -28,4 +28,7 @@ setter vi Node til p og så finner vi "midten" ved å ta antall og dele det på 
 derretter har vi if setninger som sier hvis indeksen vi leter etter er større en midten, 
 så skal vi gå fra Noden som blir satt til hode.neste og videre ved hjelp av en for løkke
 fram til indeksen er nådd. hvis ikke skal vi gå fra noden som er hale.forrige og gå igjennom 
-til vi finner indeksen, tilslutt returneres Noden(p). I oppgave 
+til vi finner indeksen, tilslutt returneres Noden(p). I oppgave b) sjekker vi fratilkontroll først.
+Etter dette sjekker vi om "til" er før "fra" og gir en illegalArgumentexception om dette stemmer.
+derretter oppretter vi en ny dobbeltlenkeliste ved navn sublisten. Derretter looper vi gjennom
+og bruker leggInn for å legge inn verdiene fra "fra" til "til". tilslutt returneres sublisten.
