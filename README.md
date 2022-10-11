@@ -50,6 +50,19 @@ i at den gjennomløper alle nodene, til den finner ønsket verdi, og i så fall 
 I oppgave 5 så gikk vi frem ved å gjennomløpe nodene til oppgitt indeks, så sette nodene på hver side 
 inn i hjelpenoder, slik at ny node kan settes inn mellom de eksisterende. Så settes pekere på plass igjen.
 
+
+I denne oppgaven skulle vi lage to forskjellige fjern metoder. Første metoden vi tar for oss er fjern(int indeks).
+først sjekker vi indeksen med en fraTilKontroll. etter dette setter vi tre variabler, q, p og n. Om antall = 1 nuller
+vi hode og hale pekere for "slette" elementet (med hjelp fra garbege collector).
+Om ikke antall = 1 vil en forløkke gå igjennom listen og sette q til noden på spesifisert indeks. Om indeksen er 0 vet
+vi at vi er på første node, så setter n til neste første element og nuller forrige-pekeren til n, så setter vi
+nestepekeren til hode = n.
+Hvis indeks antall - 1, vet vi at vi er på siste element og gjør det motsatte av indeks = 0. Om ingen av de to
+overnevnte er ikke er sanne så vet vi at elementet er "midt" i listen. Da må vi peke elementene på hver side av noden på
+hverandre, med hjelp fra garbage collector vil noden bli slettet. etter dette nedjusterer vi antall for hver gang vi
+sletter ett element og inkrementerer endringer. tilslutt returnerer vi verdien til elementet vi slettet.
+
+
 I oppgave 7 så gikk vi frem ved å gjennomløpe alle nodene, sette verdien deres til null, fjerne pekerene deres. 
 Dermed kan søppeltømmeren fjerne dem fra minnet.
 
