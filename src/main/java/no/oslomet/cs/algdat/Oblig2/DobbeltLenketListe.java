@@ -406,6 +406,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
         endringer ++;
     }
 
+    //Kode hentet fra 3.1.2 løsningsforslag, hvor vi endret på variablene for at de skulle passe programmet
     @Override
     public String toString() {
         if (tom()){
