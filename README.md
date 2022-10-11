@@ -52,3 +52,12 @@ inn i hjelpenoder, slik at ny node kan settes inn mellom de eksisterende. Så se
 I oppgave 7 så gikk vi frem ved å gjennomløpe alle nodene, sette verdien deres til null, fjerne pekerene deres. 
 Dermed kan søppeltømmeren fjerne dem fra minnet.
 
+
+I oppgave 9 skulle vi lage kode for remove(). Oppgaven ble først løst ved å behandle edge-cases som at listen er tom 
+eller at man ikke ha lov til å fjerne, og at endringer != itterattorendringer. I disse tilfelle ble det kastet en error.
+Så sjekker vi om antall i listen er 1, isåfall skal hode.neste og hale.forrige bli nullet. Om ikke det er tilfellet
+sjekker vi om vi er på siste element, altså denne == null, da må vi endre hale til å peke på det som da var nest siste 
+element. Om vi ikke er bakerst så sjekker vi om vi er forrest i listen. I dette tilfellet så endre vi hode til å peke 
+på det da var nest først. Om ingen av de overnevnte situasjonene påtreffes så peker vi nodene på hver side av noden 
+vi skal fjerne, på hverandre. Det fører til at java sin garbage-collector tar av seg jobben ved å fjerne noden vi 
+behandlet.
