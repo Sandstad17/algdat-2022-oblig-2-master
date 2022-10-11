@@ -549,6 +549,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
+
         for (int i = 0; i<liste.antall(); i++){
             for (int j = 0; j <liste.antall(); j++){
                 if(c.compare(liste.hent(i),liste.hent(j)) < 0){
@@ -557,6 +558,30 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                     liste.oppdater(j,temp);
                 }
             }
+
+        Objects.requireNonNull(liste);
+
+        if (liste.antall() <= 0) {
+            throw new IllegalArgumentException("Ikke gyldig for tom liste");
+        }
+        T r = null;
+        T q = liste.hent(0);
+        int indeks = 0;
+
+        for (int i = 0; i < liste.antall(); i++) {
+
+            for (int j = i; j < liste.antall(); i++) {
+                q = liste.hent(j);
+                if (c.compare(q, r) < 0) {
+                    // If current value less than min value
+                    r = q;
+                    indeks = j;
+                }
+            }
+            q = liste.hent(i);
+            liste.oppdater(indeks, q);
+            liste.oppdater(i, q);
+
         }
     }
 
