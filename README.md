@@ -51,7 +51,7 @@ I oppgave 5 så gikk vi frem ved å gjennomløpe nodene til oppgitt indeks, så 
 inn i hjelpenoder, slik at ny node kan settes inn mellom de eksisterende. Så settes pekere på plass igjen.
 
 
-I denne oppgaven skulle vi lage to forskjellige fjern metoder. Første metoden vi tar for oss er fjern(int indeks).
+I denne oppgaven6 skulle vi lage to forskjellige fjern metoder. Første metoden vi tar for oss er fjern(int indeks).
 først sjekker vi indeksen med en fraTilKontroll. etter dette setter vi tre variabler, q, p og n. Om antall = 1 nuller
 vi hode og hale pekere for "slette" elementet (med hjelp fra garbege collector).
 Om ikke antall = 1 vil en forløkke gå igjennom listen og sette q til noden på spesifisert indeks. Om indeksen er 0 vet
