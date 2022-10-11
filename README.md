@@ -11,8 +11,9 @@ Oppgaven er levert av følgende studenter:
 # Arbeidsfordeling
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
-* Vi har delegert ansvar slik at vi satt sammen og jobbet med hver oppgave i rekkefølge til den ble løst, så gå videre til den neste.
-* 
+* Vi har delegert ansvar slik at vi satt sammen og jobbet med hver oppgave i
+  rekkefølge til den ble løst, så gå videre til den neste. 
+
 
 
 # Oppgavebeskrivelse
@@ -52,3 +53,31 @@ inn i hjelpenoder, slik at ny node kan settes inn mellom de eksisterende. Så se
 I oppgave 7 så gikk vi frem ved å gjennomløpe alle nodene, sette verdien deres til null, fjerne pekerene deres. 
 Dermed kan søppeltømmeren fjerne dem fra minnet.
 
+
+Oppgave 8 var en omfattende oppgave med flere forskjellige deloppgaver. Vi starter med å gjøre noen kontroll-setninger
+for å sjekke om det er lovlige argumenter inn i metoden. Vi sjekker blant annet om itteratorendringer != endringer, og
+om hasNext() for denne er false. For hver av disse tilfellene sendes en feilmelding. Hvis ikke disse tilfellene oppstår 
+returnerer vi denne.verdi, setter fjernOk til true, og til slutt setter denne til den neste noden i listen.
+Etter dette lagde vi en instans av iteratorklassen.
+Neste steg var DobbeltLenkeListeItterator konstruktør. Her byttet vi denne = hode.neste med denne = finnNode(indeks).
+Til slutt lagde vi metoden iterator(int indeks). Først starter vi med å sjekke lovligheten til parameteret ved å sende
+det inn i indeksKontroll(), om det ikke oppstår noen feilmelding, vil metoden returnere en ny instans av
+DobbeltLenkeetListeIterator(indeks).
+
+
+
+I oppgave 9 skulle vi lage kode for remove(). Oppgaven ble først løst ved å behandle edge-cases som at listen er tom 
+eller at man ikke ha lov til å fjerne, og at endringer != itterattorendringer. I disse tilfelle ble det kastet en error.
+Så sjekker vi om antall i listen er 1, isåfall skal hode.neste og hale.forrige bli nullet. Om ikke det er tilfellet
+sjekker vi om vi er på siste element, altså denne == null, da må vi endre hale til å peke på det som da var nest siste 
+element. Om vi ikke er bakerst så sjekker vi om vi er forrest i listen. I dette tilfellet så endre vi hode til å peke 
+på det da var nest først. Om ingen av de overnevnte situasjonene påtreffes så peker vi nodene på hver side av noden 
+vi skal fjerne, på hverandre. Det fører til at java sin garbage-collector tar av seg jobben ved å fjerne noden vi 
+behandlet.
+
+
+I oppgave 10 skulle vi lagde vi en metode som sorterer en liste basert på typen T. Først spesifiserer vi at listen ikke
+kan være null. Deretter benytter vi oss av en nested for-loop. Den yttre loopen kjører fra indeks 0 til liste.antall.
+Den indre loopen kjører på likt vis. På denne måten kan vi sjekke verdien fra den ytre-loopen med alle verdiene fra
+den indre-loopen for å avgjøre hvem som er "minst". Deretter setter vi den "minste" på indeksen til den yttre-loopen.
+Vi har mulighetene til å endre plassene med en manuel "bytt-funksjon" i den inndre loopen.
