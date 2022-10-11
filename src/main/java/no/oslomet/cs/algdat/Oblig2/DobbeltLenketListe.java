@@ -218,25 +218,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     }
 
     private Node<T> finnNode(int indeks){
-        //Iterativ løsnin
+        //Iterativ løsning
+
+        //setter p
         Node<T> p;
 
+        //Finner midten av dobbeltlenkelista
         int midten = antall/2;
 
+        //hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
         if (indeks <= midten) {
-            //skriv hendelse som leter fra Head og gå mot Høyre ved hjelp av neste-pekere
             p = hode.neste;
             for(int i = 0; i < indeks; i++){
                p = p.neste;
             }
         }
+        //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
         else {
-            //skriv hendelse som leter fra Tail og gå mot venstre ved hjelp av forrige-pekere
             p = hale.forrige;
             for(int i = antall - 1 ; i > indeks; i--){
                 p = p.forrige;
             }
         }
+        //returnerer posisjonen/indeksen
         return p;
     }
 
@@ -555,8 +559,6 @@ public class DobbeltLenketListe<T> implements Liste<T> {
             }
         }
     }
-
-
 
     private void fratilKontroll(int indeks, boolean leggInn) {
         if (indeks < 0 || (!leggInn && (indeks >= antall)) || (leggInn && (indeks > antall))) {
