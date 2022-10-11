@@ -337,15 +337,20 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
     @Override
     public T fjern(int indeks) {
+
+        //Sjekker om indeks er gyldig
         fratilKontroll(indeks, false);
 
+
+        //Definerer q, p, n
         Node<T> q = hode.neste;
         Node<T> p = hode;
         Node<T> n = hale;
 
+        //Oma antall
         if (antall == 1) {
-            p.forrige = null;
-            n.neste = null;
+            p.neste = null;
+            n.forrige = null;
         }
         else {
             for (int i = 0; i < indeks; i++) {
@@ -484,19 +489,25 @@ public class DobbeltLenketListe<T> implements Liste<T> {
 
         @Override
         public T next() {
-            //Antar at vi har gjort feil i while-løkken ved å ikke returnere "denne" for hver itterasjon
             //Erik ikke rør med mindre det er liv og død (husk å legge til kommentarer om du endrer noe)
 
+            //Sjekker om iteratorendringer != endringer, kaster error dersom det er sant :)
             if (iteratorendringer != endringer) {
                 throw new ConcurrentModificationException();
             }
 
+            //Sjekker om hasNext()
             if (hasNext()) {
+                //Setter en temp til å være denne sin verdi for å returnere senere
                 T temp = denne.verdi;
-                fjernOK = true;
+                //Setter denne til å være neste i listen
                 denne = denne.neste;
+                //Det er nå ok å kjøre remove()
+                fjernOK = true;
+                //Returnerer verdien til noden den var på
                 return temp;
             } else {
+                //Om vi peker forbi listen så kastes error:
                 throw new NoSuchElementException();
             }
         }
@@ -521,7 +532,7 @@ public class DobbeltLenketListe<T> implements Liste<T> {
                 hale.forrige = null;
             }
 
-            else if(denne == null){
+            else if(denne == null){ //Siste element
                 hale.forrige = hale.forrige.forrige;
                 hale.forrige.neste = null;
             }
