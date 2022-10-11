@@ -547,7 +547,29 @@ public class DobbeltLenketListe<T> implements Liste<T> {
     } // class DobbeltLenketListeIterator
 
     public static <T> void sorter(Liste<T> liste, Comparator<? super T> c) {
-        throw new UnsupportedOperationException();
+        Objects.requireNonNull(liste);
+
+        if (liste.antall() <= 0) {
+            throw new IllegalArgumentException("Ikke gyldig for tom liste");
+        }
+        T r = null;
+        T q = liste.hent(0);
+        int indeks = 0;
+
+        for (int i = 0; i < liste.antall(); i++) {
+
+            for (int j = i; j < liste.antall(); i++) {
+                q = liste.hent(j);
+                if (c.compare(q, r) < 0) {
+                    // If current value less than min value
+                    r = q;
+                    indeks = j;
+                }
+            }
+            q = liste.hent(i);
+            liste.oppdater(indeks, q);
+            liste.oppdater(i, q);
+        }
     }
 
     private void fratilKontroll(int indeks, boolean leggInn) {
