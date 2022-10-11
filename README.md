@@ -22,3 +22,10 @@ Denne konstruktøren starter med to tomme noder som hode og hale, og bygger derf
 Etter den enkeltlenkede listen er opprettet, går den gjennom igjen og legger inn bakoverpekerene slik at det blir en dobbeltlenket liste.
 
 I oppgave 2 så brukte vi en ... til å ...
+
+I oppgave 3a)
+setter vi Node til p og så finner vi "midten" ved å ta antall og dele det på to. 
+derretter har vi if setninger som sier hvis indeksen vi leter etter er større en midten, 
+så skal vi gå fra Noden som blir satt til hode.neste og videre ved hjelp av en for løkke
+fram til indeksen er nådd. hvis ikke skal vi gå fra noden som er hale.forrige og gå igjennom 
+til vi finner indeksen, tilslutt returneres Noden(p). I oppgave 
